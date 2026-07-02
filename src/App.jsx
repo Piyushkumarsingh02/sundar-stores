@@ -119,37 +119,49 @@ function Home() {
         </button>
       </div>
 
-      <h1>{t.title}</h1>
+      <div className="header">
+  <h1>🏪 Sundar Stores</h1>
+  <p>Daily Sales Tracker</p>
+</div>
 
-      <div className="card">
-        <h3>{t.monthly}</h3>
-        <h2>₹{monthlyTotal}</h2>
-      </div>
+<p className="today-date">
+  📅 {new Date().toLocaleDateString("en-IN")}
+</p>
 
-      <div className="card">
-        <h3>{t.records}</h3>
-        <h2>{sales.length}</h2>
-      </div>
+<div className="monthly-card">
+  <h3>{t.monthly}</h3>
+  <h1>₹{monthlyTotal}</h1>
+</div>
 
-      <label>{t.cash}</label>
-      <input
-        type="number"
-        value={cash}
-        onChange={(e) => setCash(e.target.value)}
-        placeholder="₹ 0"
-      />
+<div className="card">
+  <h3>{t.records}</h3>
+  <h2>{sales.length}</h2>
+</div>
 
-      <label>{t.online}</label>
-      <input
-        type="number"
-        value={online}
-        onChange={(e) => setOnline(e.target.value)}
-        placeholder="₹ 0"
-      />
+<div className="input-card">
+  <label>💵 {t.cash}</label>
+  <input
+    type="number"
+    value={cash}
+    onChange={(e) => setCash(e.target.value)}
+    placeholder="₹ 0"
+  />
+</div>
 
-      <h2>
-        {t.total}: ₹{total}
-      </h2>
+<div className="input-card">
+  <label>📱 {t.online}</label>
+  <input
+    type="number"
+    value={online}
+    onChange={(e) => setOnline(e.target.value)}
+    placeholder="₹ 0"
+  />
+</div>
+
+<div className="total-card">
+  <h3>{t.total}</h3>
+  <h1>₹{total}</h1>
+</div>
 
       <button
         className="save-btn"
@@ -158,16 +170,94 @@ function Home() {
         {t.save}
       </button>
 
-      <Link to="/history">
-        <button
-          style={{
-            width: "100%",
-            marginTop: "15px",
-          }}
-        >
-          {t.history}
-        </button>
-      </Link>
+      <button
+  style={{
+    width: "100%",
+    marginTop: "15px",
+  }}
+  onClick={() => {
+    const data =
+      localStorage.getItem("sales") || "[]";
+
+    const blob = new Blob([data], {
+      type: "application/json",
+    });
+
+    const url =
+      window.URL.createObjectURL(blob);
+
+    const a =
+      document.createElement("a");
+
+    a.href = url;
+    a.download =
+      "sundar-stores-backup.json";
+
+    a.click();
+
+    window.URL.revokeObjectURL(url);
+  }}
+>
+  {language === "en"
+    ? "Backup Data"
+    : "डेटा बैकअप"}
+</button>
+
+<input
+  type="file"
+  accept=".json"
+  style={{
+    width: "100%",
+    marginTop: "15px",
+  }}
+  onChange={(e) => {
+    const file = e.target.files[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = (event) => {
+      try {
+        const data = JSON.parse(
+          event.target.result
+        );
+
+        localStorage.setItem(
+          "sales",
+          JSON.stringify(data)
+        );
+
+        alert(
+          language === "en"
+            ? "Backup Restored"
+            : "बैकअप पुनर्स्थापित"
+        );
+
+        window.location.reload();
+      } catch {
+        alert(
+          language === "en"
+            ? "Invalid Backup File"
+            : "अमान्य बैकअप फ़ाइल"
+        );
+      }
+    };
+
+    reader.readAsText(file);
+  }}
+/>
+
+<Link to="/history">
+  <button
+    style={{
+      width: "100%",
+      marginTop: "15px",
+    }}
+  >
+    {t.history}
+  </button>
+</Link>
     </div>
   );
 }

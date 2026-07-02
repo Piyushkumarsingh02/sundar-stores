@@ -1,26 +1,151 @@
-.card {
-  background: white;
-  padding: 15px;
-  margin-top: 15px;
-  border-radius: 12px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(
+    180deg,
+    #fef3c7,
+    #fde68a
+  );
 }
-.card {
-  background: white;
-  padding: 15px;
-  border-radius: 12px;
-  margin-bottom: 20px;
+
+.container {
+  max-width: 420px;
+  margin: auto;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.header {
+  background: linear-gradient(
+    135deg,
+    #7c3aed,
+    #ec4899
+  );
+  color: white;
+  padding: 25px;
+  border-radius: 20px;
   text-align: center;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
-.card button {
+
+.header h1 {
+  margin: 0;
+}
+
+.header p {
+  margin-top: 8px;
+}
+
+.today-date {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.monthly-card {
+  background: linear-gradient(
+    135deg,
+    #10b981,
+    #22c55e
+  );
+  color: white;
+  text-align: center;
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.total-card {
+  background: linear-gradient(
+    135deg,
+    #2563eb,
+    #06b6d4
+  );
+  color: white;
+  text-align: center;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.input-card {
+  background: white;
+  padding: 15px;
+  border-radius: 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+input[type="number"] {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 2px solid #e5e7eb;
+  font-size: 18px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.save-btn {
+  background: linear-gradient(
+    135deg,
+    #f97316,
+    #ef4444
+  );
+}
+
+.lang-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.lang-buttons button {
+  background: linear-gradient(
+    135deg,
+    #8b5cf6,
+    #ec4899
+  );
+}
+
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.card button:first-of-type {
+  background: #3b82f6;
+}
+
+.card button:last-of-type {
+  background: #ef4444;
+}
+
+input[type="file"] {
   width: 100%;
   padding: 10px;
   margin-top: 10px;
-  cursor: pointer;
-}
-input[type="file"] {
-  padding: 10px;
-  background: white;
-  border-radius: 8px;
 }
